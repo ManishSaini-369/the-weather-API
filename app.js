@@ -2,6 +2,8 @@ const express = require("express");
 const https = require("https");
 
 const app = express();
+const ejs = require('ejs');
+app.set('view engine','ejs');
 
 const bodyParser = require("body-parser");
 
@@ -27,10 +29,15 @@ app.post("/", function(req, res) {
       const weatherDescription = weatherData.weather[0].description;
       const icon = weatherData.weather[0].icon;
       const imageURL = "https://openweather.org/img/wn/" + icon + "@2x.png";
-      res.write("<p>The weather is currently " + weatherDescription + "<p>");
-      res.write("<h1>The temperature in " + query + " is " + temp + "degrees Celcius.</h1>")
-      res.write("<img scr=" + imageURL + ">");
-      res.send();
+      // res.write("<p>The weather is currently " + weatherDescription + "<p>");
+      // res.write("<h1>The temperature in " + query + " is " + temp + "degrees Celcius.</h1>")
+      // res.write("<img scr=" + imageURL + ">");
+      const templateData = {
+        query,
+        weatherDescription,
+        temp,
+      };
+      res.render('next',templateData);
     });
   });
 });

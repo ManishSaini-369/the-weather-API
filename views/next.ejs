@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        html, body {
+<style>
+    html, body {
   font-family: 'Montserrat Alternates', sans-serif;
   color: #FFFFFF;
   width: 100%;
@@ -67,11 +67,17 @@ h2 {
 }
 .container {
   position: relative;
-  margin: calc(75px + 2vh + 2vw) auto 0 auto;
+  margin: 0 auto;
   padding: 0;
   width: 100%;
   max-width: 840px;
+  height: 100vh; /* Set the container height to 100% of the viewport height */
+  display: flex; /* Use flexbox to center the items vertically */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
 }
+
 .search-box {
   position: relative;
   width: 100%;
@@ -193,50 +199,19 @@ h2 {
 #search::-moz-selection {color: #FFFFFF; background: rgba(0,0,0,0.25);}
 #search::selection {color: #FFFFFF; background: rgba(0,0,0,0.25);}
 
-    </style>
+</style>
+
 </head>
 <body>
     <main>
         <div class="container">
-            <h1>Weather API</h1>
-            <h2>Enter City Name</h2>
+            <h1>The Weather is currently <%= weatherDescription %></h1>
+            <h2>The temperature in <%= query %> : <%= temp %> &deg;C </h2>
             <div class="search-box">
-                <div class="search-icon"><i class="fa fa-search search-icon"></i></div>
-                <form action="/" method="post" class="search-form">
-                    <input type="text" name="cityName" placeholder="Search" id="search" autocomplete="off">
-                </form>
-                <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;" xml:space="preserve">
-                    <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280" />
-                    <path class="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280" />
-                </svg>
-                <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
             </div>
     
         </div>
     </main>
-    <script>
-        $(document).ready(function(){
-    $("#search").focus(function() {
-      $(".search-box").addClass("border-searching");
-      $(".search-icon").addClass("si-rotate");
-    });
-    $("#search").blur(function() {
-      $(".search-box").removeClass("border-searching");
-      $(".search-icon").removeClass("si-rotate");
-    });
-    $("#search").keyup(function() {
-        if($(this).val().length > 0) {
-          $(".go-icon").addClass("go-in");
-        }
-        else {
-          $(".go-icon").removeClass("go-in");
-        }
-    });
-    $(".go-icon").click(function(){
-      $(".search-form").submit();
-    });
-});
-
-    </script>
+    
 </body>
 </html>
