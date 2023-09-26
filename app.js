@@ -2,6 +2,7 @@ const express = require("express");
 const https = require("https");
 
 const app = express();
+const port = process.env.PORT||3000;
 const ejs = require('ejs');
 app.set('view engine','ejs');
 
@@ -42,6 +43,6 @@ app.post("/", function(req, res) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("server is runing at port 3000.");
 });
